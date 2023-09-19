@@ -1,0 +1,75 @@
+
+<div class="bg-light p-5">
+    <div class="container bg-dark rounded py-5  ">
+        <h1 class="text-white text-center ">Student Login</h1>
+        <hr class="text-white">
+        <div class="row m-auto">
+            <form class="row g-3" (submit)="login($event)">
+                <div class="col-md-6">
+                    <label for="studentName" class="form-label">Student name</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="studentName"
+                    placeholder="Enter Student Name"
+                    value=""
+                    name="studentName"
+                    [ngClass]="{
+                        'is-valid': isStudentNameValid,
+                        'is-invalid': !isStudentNameValid && !isStudentNameEmpty
+                    }"
+                    [(ngModel)]="studentName"
+                    />
+                    <div class="valid-feedback">Success Message</div>
+                    <div class="invalid-feedback">Length must be than 3</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="age" class="form-label" >Student Age</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="age"
+                        value=""
+                        placeholder="Enter Student Age"
+                        name="studentAge"
+                        [ngClass]="{
+                            'is-valid' :isStudentAgeValid,
+                            'is-invalid' : !isStudentAgeValid && !isStudentAgeEmpty
+                        }"
+                        [(ngModel)]="studentAge"
+                        
+                    />
+                    <div class="valid-feedback">Success Message</div>
+                    <div class="invalid-feedback">Age  must be greater than 18</div>
+
+                </div>
+                <div class="col-12 " style="text-align: center;">
+                    <button class="btn btn-info my-3" type="button" (click)="addStudent()" >Login</button>
+                </div>
+            </form>
+            <hr class="text-white">
+
+            <div class="bg-dark text-light p-5 text-center">
+                <h1 class="py-3">Student List</h1>
+                <div class="container">
+                    <div class="row" *ngFor="let x of studentList; let i = index">
+                        <div class="col-md-5">
+                            <h6>Name</h6>
+                            <p>{{ x.studentName }}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <h6>Age</h6>
+                            <p>{{ x.studentAge }}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-danger" (click)="removeStudent(i)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
